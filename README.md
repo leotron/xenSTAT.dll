@@ -30,7 +30,6 @@
 	获取CV缺省参数
 	参数（7个）数组
 	
-
 1.6. public int[] defaultSWVParm
 	获取SWV缺省参数
 	参数（7个）数组
@@ -232,7 +231,7 @@
 
 ~~~
 
- import time
+import time
 import clr
 clr.AddReference('xenSTAT')
 from xenSTAT import *
@@ -256,5 +255,5 @@ if myDll.isTestEnd==1:
 
 
 
-5 修改记录：
-5.1 2021-11-04 添加适合python调用API
+#### 5 修改记录：
+##### 5.1 2021-11-04 添加适合python调用API
