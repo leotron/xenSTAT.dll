@@ -46,6 +46,7 @@ xenSTAT SDK:
 1.9 public bool isTestEnd
 	测试是否结束
 	在用户回调函数中使用
+
 2.0 public event EventHandler MyEvent;
 	设定用户回调函数
 
