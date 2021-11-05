@@ -51,18 +51,16 @@ xenSTAT SDK:
 
 2. 运行方法：
 
-2.1 c#可使用API:
-
-2.2.2 public void RunCV()
+2.1 public void RunCV()
 	运行CV测试
 
-2.2.3 public void RunSWV()
+2.2 public void RunSWV()
 	运行SWV测试
 
-2.2.4 public void RunIT()
+2.3 public void RunIT()
 	运行IT测试
 
-2.1.4. public void RunDPV()		
+2.4. public void RunDPV()		
 	运行DPV测试
 
 

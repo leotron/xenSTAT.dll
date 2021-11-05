@@ -26,46 +26,45 @@
    1.4. public double[] returnValue	
    	测试数据（单次）
    	注意：回调函数中使用，取得仪器发来的测试数据（单次）
-   	
+
    1.5. public int[] defaultCVParm
    	获取CV缺省参数
    	参数（7个）数组
-   
-1.6. public int[] defaultSWVParm
+
+   1.6. public int[] defaultSWVParm
    	获取SWV缺省参数
    	参数（7个）数组
-   
-   
-      1.7. public int[] defaultITParm
-      	获取IT缺省参数
-      	参数（4个）数组
-   
-   
-      1.8. public int[] deaultDPVParm
-      	获取DPV缺省参数
-      	参数（8个）数组
-   
-      1.9 public bool isTestEnd
-      	测试是否结束
-      	在用户回调函数中使用
-      2.0 public event EventHandler MyEvent;
-      	设定用户回调函数
-   
-   2. **运行方法：**
 
-         2.1 c#可使用API:
+   1.7. public int[] defaultITParm
+   	获取IT缺省参数
+   	参数（4个）数组
 
-         2.2.2 public void RunCV()
-         	运行CV测试
+   1.8. public int[] deaultDPVParm
+   	获取DPV缺省参数
+   	参数（8个）数组
 
-         2.2.3 public void RunSWV()
-         	运行SWV测试
+   1.9 public bool isTestEnd
+   	测试是否结束
+   	在用户回调函数中使用
 
-         2.2.4 public void RunIT()
-         	运行IT测试
+   2.0 public event EventHandler MyEvent;
+   	设定用户回调函数
 
-         2.1.4. public void RunDPV()		
-         	运行DPV测试
+
+
+2. **运行方法：**
+
+   2.1 public void RunCV()
+      	运行CV测试
+
+   2.2 public void RunSWV()
+      	运行SWV测试
+
+   2.3 public void RunIT()
+      	运行IT测试
+
+   2.4. public void RunDPV()		
+      	运行DPV测试
 
 
 
@@ -98,7 +97,7 @@
    3.6. public bool setDefaultSWVParm()
    	设置SWV缺省参数
    	返回：true（成功），false(失败)
-   	
+
    3.7. public bool setDefaultITParm()
    	设置IT缺省参数
    	返回：true（成功），false(失败)
@@ -306,5 +305,3 @@ namespace xenDLLSample1
 5 修改记录：
 5.1 2021-11-04 添加适合python调用API
 5.2 2021-11-04 修改运行调用API，删除python调用API
-
-
