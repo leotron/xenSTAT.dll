@@ -47,7 +47,7 @@ xenSTAT SDK:
 	测试是否结束
 	在用户回调函数中使用
 
-2.0 public event EventHandler MyEvent;
+2.0 public event EventHandler myEvent;
 	设定用户回调函数
 
 2. 运行方法：
@@ -68,39 +68,39 @@ xenSTAT SDK:
 
 3. 参数设置：
 
-3.1. public bool setCVParameters(int initE, int highR, int lowE, int scanR, int segments, int step, int Rtial)
+3.1. public bool SetCVParameters(int initE, int highR, int lowE, int scanR, int segments, int step, int Rtial)
 	设置CV测试参数
 	参数：CV设置的7个参数
 	返回：true（成功），false(失败)
 
-3.2. public bool setSWVParameters(int initE, int finalE, int incrE, int ampltd, int freq, int sampleW, int Rtial)
+3.2. public bool SetSWVParameters(int initE, int finalE, int incrE, int ampltd, int freq, int sampleW, int Rtial)
 	设置SWV测试参数
 	参数：SWV设置的7个参数
 	返回：true（成功），false(失败)
 	
-3.3. public bool setITParameters(int initE, int runtime, int sampleP, int Rtial)
+3.3. public bool SetITParameters(int initE, int runtime, int sampleP, int Rtial)
 	设置IT测试参数
 	参数：IT设置的4个参数
 	返回：true（成功），false(失败)
 	
-3.4. public bool setDPVParameters(int initE, int finalE, int incrE, int ampltd, int pulseW, int pulseP, int sampleW, int Rtial)
+3.4. public bool SetDPVParameters(int initE, int finalE, int incrE, int ampltd, int pulseW, int pulseP, int sampleW, int Rtial)
 	设置DPV测试参数
 	参数：DPV设置的8个参数
 	返回：true（成功），false(失败)
 	
-3.5. public bool setDefaultCVParm()
+3.5. public bool SetDefaultCVParm()
 	设置CV缺省参数
 	返回：true（成功），false(失败)
 	
-3.6. public bool setDefaultSWVParm()
+3.6. public bool SetDefaultSWVParm()
 	设置SWV缺省参数
 	返回：true（成功），false(失败)
 	
-3.7. public bool setDefaultITParm()
+3.7. public bool SetDefaultITParm()
 	设置IT缺省参数
 	返回：true（成功），false(失败)
 
-3.8. public bool setDefaultDPVParm()
+3.8. public bool SetDefaultDPVParm()
 	设置DPV缺省参数
 	返回：true（成功），false(失败)
 
@@ -135,13 +135,13 @@ namespace xenDLLSample1
 				MessageBox.Show("设备连接失败！！");
             }
 			//设定用户自己的回调处理函数
-			myDll.MyEvent += MyRelProess;
+			myDll.myEvent += MyRelProess;
 		}
 		private void button1_Click(object sender, EventArgs e)
 		{
 			//缺省参数设置
 			bool rel = false;
-			rel = myDll.setDefaultCVParm();
+			rel = myDll.SetDefaultCVParm();
 			if (rel)
 			{
 				MessageBox.Show("设置成功");
@@ -207,6 +207,7 @@ namespace xenDLLSample1
 4.2 Python示例：
 
 ======================================================
+
 	import time
 	import clr
 	clr.AddReference('xenSTAT')
@@ -214,90 +215,60 @@ namespace xenDLLSample1
 
 	myDll = IOContrl()
 
-	print("CV测试:")
-	print()
-	rel = myDll.setDefaultCVParm()
-	if rel:
-		print("\tCV参数设置成功")
-	else:
-		print("\tCV参数设置失败")
+	def rf(o,e):
+	  if myDll.isTestEnd==1:
+		print("测试结束")
+	  else:
+		print("\t%g\t%g"%(myDll.returnValue[0],myDll.returnValue[1]))
 
-	print("\n\t开始测试：")
+	myDll.myEvent += rf
+
+	print("CV测试：")
+	rel = myDll.SetDefaultCVParm()
+	if rel:
+	  print("\tCV参数设置成功")
+	print("\t测试开始：")
 	myDll.RunCV()
+
 	while myDll.isTestEnd==0:
 	  time.sleep(0.1)
-	  if myDll.GetReturnValue():
-		print("\t\t%g \t  %g" % (myDll.returnValue[0],myDll.returnValue[1]))
-
-	if myDll.isTestEnd==1:
-	  print("\tCV测试结束")
-
-	time.sleep(1)
-	print()
 	print()
 
-	print("SWV测试:")
-	print()
-	rel = myDll.setDefaultSWVParm()
+	print("SWV测试：")
+	rel = myDll.SetDefaultSWVParm()
 	if rel:
-		print("\tSWV参数设置成功")
-	else:
-		print("\tSWV参数设置失败")
-
-	print("\n\t开始测试：")
+	  print("\tSWV参数设置成功")
+	print("\t测试开始：")
 	myDll.RunSWV()
+
 	while myDll.isTestEnd==0:
 	  time.sleep(0.1)
-	  if myDll.GetReturnValue():
-		print("\t\t%g \t  %g" % (myDll.returnValue[0],myDll.returnValue[1]))
-
-	if myDll.isTestEnd==1:
-	  print("\tSWV测试结束")
-
-	time.sleep(1)
-	print()
 	print()
 
-	print("IT测试:")
-	print()
-	rel = myDll.setDefaultITParm()
+	print("IT测试：")
+	rel = myDll.SetDefaultITParm()
 	if rel:
-		print("\tIT参数设置成功")
-	else:
-		print("\tIT参数设置失败")
-
-	print("\n\t开始测试：")
+	  print("\tIT参数设置成功")
+	print("\t测试开始：")
 	myDll.RunIT()
+
 	while myDll.isTestEnd==0:
 	  time.sleep(0.1)
-	  if myDll.GetReturnValue():
-		print("\t\t%g \t  %g" % (myDll.returnValue[0],myDll.returnValue[1]))
-
-	if myDll.isTestEnd==1:
-	  print("\tIT测试结束")
-
-	time.sleep(1)
-	print()
 	print()
 
-	print("DPV测试:")
-	print()
-	rel = myDll.setDefaultDPVParm()
-
+	print("DPV测试：")
+	rel = myDll.SetDefaultDPVParm()
 	if rel:
-		print("\tDPV参数设置成功")
-	else:
-		print("\tDPV参数设置失败")
-
-	print("\n\t开始测试：")
+	  print("\tDPV参数设置成功")
+	print("\t测试开始：")
 	myDll.RunDPV()
+
 	while myDll.isTestEnd==0:
 	  time.sleep(0.1)
-	  if myDll.GetReturnValue():
-		print("\t\t%g \t  %g" % (myDll.returnValue[0],myDll.returnValue[1]))
+	print()
 
-	if myDll.isTestEnd==1:
-	  print("\tDPV测试结束")
+	#End
+
 ==========================================================	  
 
 5 修改记录：
